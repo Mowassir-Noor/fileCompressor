@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <algorithm>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 // Huffman Tree Node
@@ -356,13 +357,32 @@ void decompressFile(const string &inputFile, const string &outputFile)
     cout << "Decompression complete!\n";
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    string inputFile = "input.txt";
-    string compressedFile = "compressed.huff";
-    string outputFile = "output.txt";
+    if (argc != 4)
+    {
+        cerr << "Usage: " << argv[0] << " c <input> <compressed>\n"
+             << "   or: " << argv[0] << " d <compressed> <output>\n";
+        return 1;
+    }
 
-    compressFile(inputFile, compressedFile);
-    decompressFile(compressedFile, outputFile);
+    string mode = argv[1];
+    string first = argv[2];
+    string second = argv[3];
+
+    if (mode == "c")
+    {
+        compressFile(first, second);
+    }
+    else if (mode == "d")
+    {
+        decompressFile(first, second);
+    }
+    else
+    {
+        cerr << "Unknown mode: " << mode << " (use 'c' for compress, 'd' for decompress)\n";
+        return 1;
+    }
+
     return 0;
 }
