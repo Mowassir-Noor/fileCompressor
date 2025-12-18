@@ -1,0 +1,40 @@
+1. Giriş (Introduction)
+
+1.1. Problem Tanımı (Problem Definition)
+Günümüzde veri depolama ve iletim maliyetlerinin artması, verilerin daha verimli şekilde saklanmasını ve iletilmesini gerektirmektedir. Özellikle büyük boyutlu dosyaların depolanması ve transferi sırasında, dosya boyutunun küçültülmesi önemli bir avantaj sağlar. Bu nedenle, kayıpsız veri sıkıştırma algoritmalarının geliştirilmesi ve uygulanması büyük önem taşımaktadır.
+
+1.2. Projenin Amacı (Purpose of the Project)
+Bu projenin amacı, Huffman algoritmasını kullanarak dosyaların kayıpsız bir şekilde sıkıştırılması ve tekrar açılması işlemlerini gerçekleştiren bir uygulama geliştirmektir. Kullanıcılar, istedikleri dosyayı kolayca sıkıştırıp, daha sonra orijinal haline geri döndürebileceklerdir.
+
+1.3. Projenin Hedefi (Project Goal)
+Proje sonunda, komut satırından çalıştırılabilen, dosya sıkıştırma ve açma işlemlerini hızlı ve güvenilir şekilde gerçekleştiren bir yazılım elde edilmesi hedeflenmiştir. Ayrıca, büyük dosyalar için blok bazlı işleme desteği ile bellek verimliliği sağlanmıştır.
+
+2. Literatür Taraması (Literature Review)
+Huffman algoritması, 1952 yılında David A. Huffman tarafından geliştirilmiş, kayıpsız veri sıkıştırma algoritmalarının en bilinenlerinden biridir. Literatürde, Huffman algoritmasının farklı varyasyonları ve uygulamaları mevcuttur. Özellikle dosya sıkıştırma yazılımlarında (ZIP, GZIP vb.) temel algoritma olarak yaygın şekilde kullanılmaktadır. Projede, klasik Huffman algoritmasının yanı sıra, kodların kanonik (canonical) biçimde saklanması ve blok bazlı işleme gibi modern yaklaşımlar da uygulanmıştır.
+
+3. Materyal ve Yöntemler (Materials and Methods)
+Proje C++ programlama dili ile geliştirilmiştir. Standart kütüphaneler dışında ek bir kütüphane kullanılmamıştır. Uygulama iki ana fonksiyona sahiptir:
+- Dosya sıkıştırma (compress)
+- Dosya açma (decompress)
+
+Sıkıştırma işlemi sırasında:
+- Dosya bloklar halinde okunur.
+- Her blok için karakter frekansları hesaplanır.
+- Huffman ağacı oluşturulur ve kodlar üretilir.
+- Kodlar kanonik biçime dönüştürülerek dosyaya yazılır.
+- Veriler bit düzeyinde sıkıştırılarak kaydedilir.
+
+Açma işlemi sırasında:
+- Sıkıştırılmış dosyadan kod tablosu ve veri okunur.
+- Huffman ağacı yeniden oluşturulur.
+- Bitler çözülerek orijinal veri elde edilir.
+
+4. Geliştirilen Uygulama (Developed Application)
+Uygulama, komut satırından aşağıdaki şekilde çalıştırılır:
+- Sıkıştırma: ./program c <girdi_dosyası> <sıkıştırılmış_dosya>
+- Açma: ./program d <sıkıştırılmış_dosya> <çıktı_dosyası>
+
+Kullanıcıdan alınan parametreye göre dosya sıkıştırma veya açma işlemi başlatılır. Program, büyük dosyalar için blok bazlı çalışarak bellek kullanımını optimize eder ve işlem ilerlemesini yüzde olarak ekrana yansıtır. Kodda, Huffman ağacı oluşturma, kod üretimi, kanonik kodlama, bit düzeyinde yazma/okuma ve dosya işlemleri modüler fonksiyonlar halinde tasarlanmıştır.
+
+5. Sonuçlar (Results)
+Geliştirilen uygulama, farklı boyutlardaki dosyalar üzerinde başarılı şekilde çalışmıştır. Sıkıştırma oranı, dosyanın içeriğine bağlı olarak değişmekle birlikte, özellikle tekrarlı verilerde yüksek oranda sıkıştırma sağlanmıştır. Program, blok bazlı işleme sayesinde büyük dosyalarda da verimli çalışmaktadır. Kullanıcıdan alınan geri bildirimler doğrultusunda, uygulamanın arayüzü ve hata yönetimi iyileştirilebilir. Gelecekte, farklı sıkıştırma algoritmalarının eklenmesi ve çoklu dosya desteği gibi geliştirmeler yapılabilir.
